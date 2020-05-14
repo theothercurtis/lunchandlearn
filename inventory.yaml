@@ -1,0 +1,26 @@
+all:
+  vars:
+   ansible_python_interpreter: $(which python3)
+  children:
+    switches:
+      vars:  
+        ansible_connection: "network_cli"
+        ansible_network_os: "eos"
+      children:
+        awshosts:
+          vars:
+            ansible_user: "ec2-user"
+            ansible_private_ssh_key_file: "/home/netuser/.ssh/am-admin.key"
+          hosts:
+            18.219.179.32
+            18.191.53.174
+        gcphosts:
+          vars:
+            ansible_user: "admin"
+            ansible_private_ssh_key_file: "/home/netuser/.ssh/gc-admin.key"
+          hosts:
+            34.82.154.60
+            34.105.58.241
+
+
+
